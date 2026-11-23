@@ -178,7 +178,7 @@ h3 { font-family: var(--serif-ko); font-weight: 700; }
 .num { padding: 30px 8px 24px; text-align: center; border-bottom: 1px solid rgba(255,255,255,.12); }
 .num:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.12); }
 .num b { display: block; font-family: var(--serif-en); font-weight: 600; font-size: 2.5rem; line-height: 1.1; color: #fff; }
-.num b i { font-style: normal; font-size: 0.7em; color: #e9a8af; margin: 0 4px; }
+.num b .arw { font-size: 0.7em; color: #e9a8af; margin: 0 4px; }
 .num b small { font-family: var(--sans); font-size: 0.9rem; font-weight: 500; margin-left: 3px; color: #e9a8af; }
 .num span { display: block; margin-top: 8px; font-size: 0.8rem; color: #bdb6ab; line-height: 1.5; }
 .numbers-note { text-align: center; font-size: 0.78rem; color: #bdb6ab; padding-top: 18px; }
@@ -198,7 +198,7 @@ h3 { font-family: var(--serif-ko); font-weight: 700; }
 .cap h3 { font-size: 1.6rem; margin: 4px 0 12px; }
 .cap ul { list-style: none; display: grid; gap: 7px; }
 .cap li { position: relative; padding-left: 16px; font-size: 0.95rem; color: var(--ink-2); }
-.cap li small { display: block; font-size: 0.8rem; color: var(--muted); }
+.cap li small { font-size: 0.8rem; color: var(--muted); }
 .cap li::before { content: ""; position: absolute; left: 0; top: 0.78em; width: 7px; height: 1.5px; background: var(--red); }
 @media (min-width: 760px) { .cap-grid { grid-template-columns: 1fr 1fr; column-gap: 48px; } }
 @media (min-width: 1080px) {
@@ -333,7 +333,7 @@ a.imprint:hover { transform: translateY(-3px); }
 .imprint h3 { font-size: 1.5rem; margin: 10px 0 10px; }
 .imprint p { color: var(--ink-2); font-size: 0.95rem; }
 .imprint-go { display: inline-block; margin-top: 16px; font-size: 0.88rem; font-weight: 500; color: var(--navy); }
-@media (min-width: 760px) { .imprint-grid { grid-template-columns: 1fr 1fr; gap: 28px; } .imprint { padding: 38px 36px; } }
+@media (min-width: 760px) { .imprint-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; } .imprint { padding: 30px 28px; } .imprint h3 { font-size: 1.3rem; } }
 
 /* Contact card */
 .contact { padding-bottom: 96px; background: var(--paper-2); }
@@ -368,7 +368,6 @@ a.imprint:hover { transform: translateY(-3px); }
 .wordmark-sm { width: 110px; }
 .legal { font-size: 14px; color: var(--muted); line-height: 1.8; }
 .legal p + p { margin-top: 2px; }
-.legal .biz span + span::before { content: " · "; }
 
 .producers-more { margin-top: 28px; text-align: center; }
 
