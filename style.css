@@ -241,3 +241,12 @@ section { padding: 96px 0; }
 .player.is-short .player-frame { width: min(92vw, calc(86svh * 9 / 16), 420px); aspect-ratio: 9 / 16; }
 .player-frame iframe, .player-frame video { width: 100%; height: 100%; border: 0; display: block; background: #000; }
 .player-close { position: absolute; top: -46px; right: 0; width: 40px; height: 40px; border: 0; border-radius: 50%; background: #fff; color: var(--ink); font-size: 1rem; cursor: pointer; }
+
+/* 생산자 집짓기: 집 + 이야기방 */
+.rooms { display: grid; gap: 0; margin-top: 36px; border-top: 2px solid var(--ink); }
+.room { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.room-tag { font-size: 0.78rem; color: var(--red); font-weight: 500; }
+.room h3 { font-size: clamp(2rem, 8vw, 2.8rem); margin: 4px 0 10px; letter-spacing: 0.04em; }
+.room h3 small { font-family: var(--serif-en); font-size: 0.4em; font-weight: 600; letter-spacing: 0.3em; color: var(--navy); margin-left: 6px; vertical-align: 0.5em; }
+.room p:last-child { color: var(--ink-2); max-width: 30rem; }
+@media (min-width: 760px) { .rooms { grid-template-columns: 1fr 1fr; } .room { padding: 30px 32px 34px 0; border-bottom: 0; } .room + .room { padding-left: 32px; border-left: 1px solid var(--line); } }
