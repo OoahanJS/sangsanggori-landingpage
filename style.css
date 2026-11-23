@@ -333,7 +333,7 @@ a.imprint:hover { transform: translateY(-3px); }
 .imprint h3 { font-size: 1.5rem; margin: 10px 0 10px; }
 .imprint p { color: var(--ink-2); font-size: 0.95rem; }
 .imprint-go { display: inline-block; margin-top: 16px; font-size: 0.88rem; font-weight: 500; color: var(--navy); }
-@media (min-width: 760px) { .imprint-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; } .imprint { padding: 30px 28px; } .imprint h3 { font-size: 1.3rem; } }
+@media (min-width: 760px) { .imprint-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; } .imprint { padding: 30px 28px; } .imprint h3 { font-size: 1.3rem; } }
 
 /* Contact card */
 .contact { padding-bottom: 96px; background: var(--paper-2); }
@@ -388,3 +388,6 @@ a.imprint:hover { transform: translateY(-3px); }
   background: #fff; color: var(--ink); font-size: 1rem; cursor: pointer;
 }
 .player-close:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+@media (min-width: 1080px) { .imprint-grid { grid-template-columns: repeat(4, 1fr); } }
+.imprint-gorii { border-top-color: var(--red); }
