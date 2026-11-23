@@ -1,5 +1,6 @@
 /*
- * In-page video player: links marked data-yt="<YouTube id>" open in a
+ * In-page video player: links marked data-yt="<YouTube id>" or
+ * data-video="<file on this site>" open in a
  * dialog on this page instead of sending visitors away to YouTube.
  * Without JS (or <dialog> support) the links still work as plain links.
  */
@@ -15,9 +16,28 @@
   }
 
   document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest("a[data-yt]");
+    var a = e.target.closest && e.target.closest("a[data-yt], a[data-video]");
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
+    frame.innerHTML = "";
+
+    // A video file hosted on this site (vertical shorts)
+    var src = a.getAttribute("data-video");
+    if (src) {
+      dlg.classList.add("is-short");
+      var v = document.createElement("video");
+      v.src = src;
+      v.controls = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.setAttribute("playsinline", "");
+      var img = a.querySelector("img");
+      if (img) v.poster = img.src;
+      frame.appendChild(v);
+      dlg.showModal();
+      return;
+    }
+
     var id = a.getAttribute("data-yt");
     dlg.classList.toggle("is-short", a.getAttribute("data-shape") === "short");
     var f = document.createElement("iframe");
