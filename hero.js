@@ -110,7 +110,7 @@
     "void main(){",
     "  vec3 n = normalize(vN);",
     "  vec3 v = normalize(vec3(0.,0.,4.6) - vP);",
-    "  float w = 0.5+0.5*sin(6.2831853*vF.x*vF.z - uTime*0.7 + vF.y);",
+    "  float w = 0.5+0.5*sin(6.2831853*vF.x*vF.z - uTime*0.35 + vF.y);",
     "  w = smoothstep(0.08,0.92,w);",
     "  vec3 base = mix(INDIGO, RED, w);",
     "  vec3 L1 = normalize(vec3(-0.5,0.7,0.8));",
@@ -122,7 +122,7 @@
     "  float sp = pow(max(dot(n,normalize(L1+v)),0.),60.);",
     "  float sp2 = pow(max(dot(n,normalize(L2+v)),0.),24.)*0.25;",
     "  float rim = pow(1.-max(dot(n,v),0.),3.)*0.25;",
-    "  col += vec3(0.92,0.95,1.)*(sp*0.6+sp2*0.6) + vec3(0.55,0.5,0.6)*rim;",
+    "  col += vec3(0.92,0.95,1.)*(sp*0.35+sp2*0.3) + vec3(0.55,0.5,0.6)*rim;",
     "  gl_FragColor = vec4(pow(col,vec3(0.4545)),1.);",
     "}"
   ].join("\n");
@@ -220,8 +220,8 @@
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.uniform1f(uTime, t);
     gl.uniformMatrix4fv(uModel, false, model(
-      Math.sin(t * 0.4) * 0.45 + tilt.x,
-      Math.sin(t * 0.31) * 0.22 + tilt.y,
+      Math.sin(t * 0.3) * 0.28 + tilt.x,
+      Math.sin(t * 0.23) * 0.12 + tilt.y,
       Math.sin(t * 0.23) * 0.05
     ));
     gl.drawElements(gl.TRIANGLES, count, gl.UNSIGNED_SHORT, 0);
