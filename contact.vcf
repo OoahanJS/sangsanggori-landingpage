@@ -1,12 +1,12 @@
 BEGIN:VCARD
 VERSION:3.0
-N:박;지숙;;;
-FN:박지숙
-ORG:상상고리 (!Cbooks)
-TITLE:대표
+N;CHARSET=UTF-8:박;지숙;;;
+FN;CHARSET=UTF-8:박지숙
+ORG;CHARSET=UTF-8:상상고리 (!Cbooks)
+TITLE;CHARSET=UTF-8:대표
 TEL;TYPE=CELL:+82-10-2256-7704
 EMAIL;TYPE=WORK:contact@batalstone.com
 URL:https://sangsanggori.com/
-ADR;TYPE=WORK:;;도마로7번길 17, 404호;서구;대전광역시;;대한민국
-NOTE:출판 · 영상 기획·제작 · 시각 디자인 · 광고 · 컨설팅 · 교육 · 시스템 설계
+ADR;TYPE=WORK;CHARSET=UTF-8:;;;서구;대전광역시;;대한민국
+NOTE;CHARSET=UTF-8:로컬 콘텐츠 기획 · 영상 제작 · 채널 운영 · 출판 · AI 교육
 END:VCARD

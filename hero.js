@@ -1,6 +1,6 @@
 /*
  * 상상고리 hero — the !Cbooks infinity-ring mark as a slowly swaying 3D object,
- * 파랑 and 쪽빛 flowing into each other along the loop.
+ * 빨강 and 쪽빛 flowing into each other along the loop.
  * Plain WebGL 1, no libraries (~10k vertices, cheap on phones).
  *
  * The still logo stays in place (and the canvas is never shown) when:
@@ -104,15 +104,15 @@
     "precision mediump float;",
     "varying vec3 vN; varying vec3 vP; varying vec3 vF;",
     "uniform float uTime;",
-    // 파랑 (#2f6fe0) and 쪽빛 (#1b2f6b) in linear light, chasing each other along the loop
-    "const vec3 BLUE = vec3(0.028,0.16,0.75);",
-    "const vec3 INDIGO = vec3(0.011,0.028,0.15);",
+    // 빨강 (#a61f2d, the wordmark) and 쪽빛 (#2b4566, the card navy) in linear light, flowing into each other
+    "const vec3 RED = vec3(0.381,0.0137,0.026);",
+    "const vec3 INDIGO = vec3(0.022,0.05,0.13);",
     "void main(){",
     "  vec3 n = normalize(vN);",
     "  vec3 v = normalize(vec3(0.,0.,4.6) - vP);",
     "  float w = 0.5+0.5*sin(6.2831853*vF.x*vF.z - uTime*0.7 + vF.y);",
     "  w = smoothstep(0.08,0.92,w);",
-    "  vec3 base = mix(INDIGO, BLUE, w);",
+    "  vec3 base = mix(INDIGO, RED, w);",
     "  vec3 L1 = normalize(vec3(-0.5,0.7,0.8));",
     "  vec3 L2 = normalize(vec3(0.8,-0.3,0.5));",
     "  float hemi = 0.5+0.5*n.y;",
@@ -122,7 +122,7 @@
     "  float sp = pow(max(dot(n,normalize(L1+v)),0.),60.);",
     "  float sp2 = pow(max(dot(n,normalize(L2+v)),0.),24.)*0.25;",
     "  float rim = pow(1.-max(dot(n,v),0.),3.)*0.25;",
-    "  col += vec3(0.92,0.95,1.)*(sp*0.6+sp2*0.6) + vec3(0.35,0.5,0.95)*rim;",
+    "  col += vec3(0.92,0.95,1.)*(sp*0.6+sp2*0.6) + vec3(0.55,0.5,0.6)*rim;",
     "  gl_FragColor = vec4(pow(col,vec3(0.4545)),1.);",
     "}"
   ].join("\n");
@@ -203,7 +203,7 @@
   /* ---------------- loop + fallback ---------------- */
   var inView = true, visible = !document.hidden, raf = 0, failed = false;
   var start = performance.now(), last = start;
-  var frames = 0, probeTime = 0, probing = true;
+  var frames = 0, probeTime = 0, samples = [], probing = true;
 
   function giveUp(why) {
     hero.setAttribute("data-hero", "still:" + why);
@@ -231,11 +231,15 @@
     if (failed) return;
     var dt = now - last; last = now;
     if (probing) {
-      if (frames > 2) probeTime += dt; // skip warm-up frames
+      // Skip warm-up frames, and gaps where the browser paused us
+      // (background tab, hidden pane): those say nothing about the device.
+      // The median frame time ignores one-off hitches (fonts, images decoding).
+      if (frames > 2 && dt < 400 && !document.hidden) { probeTime += dt; samples.push(dt); }
       frames++;
       if (probeTime > 1500) {
         probing = false;
-        var fps = (frames - 3) / (probeTime / 1000);
+        samples.sort(function (x, y) { return x - y; });
+        var fps = 1000 / samples[samples.length >> 1];
         if (fps < 24) { giveUp("slow-" + Math.round(fps) + "fps"); return; }
       }
     }
